@@ -4,6 +4,7 @@ package com.stock.management.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +31,23 @@ public class OpenStockController {
     }
 	// fetch all stock logs with its respective stock details
     @RequestMapping(value = "/openStockAll", method = RequestMethod.GET)
-    public List<OpenStock> fetchAllOpenStock() {
-
-        return stockService.fetchAllOpenStock();
-    }
+//    public List<OpenStock> fetchAllOpenStock() {
+//
+//        return stockService.fetchAllOpenStock();
+//    }
+ 
+    public ResponseEntity<List<OpenStock>> fetchEmployee() {
+		
+    	List<OpenStock> openStocks = stockService.fetchAllOpenStock();
+		if(openStocks == null || openStocks.size() == 0) {
+			System.out.println("true");
+			return ResponseEntity.noContent().build();
+		}else {
+			System.out.println("false");
+			return ResponseEntity.ok(stockService.fetchAllOpenStock());
+			
+		}
+	}
     
     // create a new stock log only
     @RequestMapping(value = "/openStockLog", method = RequestMethod.POST)
