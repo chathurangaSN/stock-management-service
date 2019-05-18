@@ -18,9 +18,20 @@ public class Transaction {
 	private Integer id;
 	private Date date;
 	private String user;
+	private String reference;
 	
 	@OneToMany(mappedBy = "transaction",cascade = CascadeType.ALL)
 	private List<StockLog> stocklog;
+	
+	
+
+	public String getReference() {
+		return reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
 
 	public Integer getId() {
 		return id;
