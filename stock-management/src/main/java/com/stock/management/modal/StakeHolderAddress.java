@@ -1,3 +1,5 @@
+
+//nilaksha
 package com.stock.management.modal;
 import javax.persistence.Entity;
 //nilaksha

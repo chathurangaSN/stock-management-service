@@ -1,5 +1,9 @@
+
+//nilaksha
 package com.stock.management.controller;
 
+//import java.util.LinkedList;
+//import java.util.List;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +39,10 @@ public class StakeHolderController {
 		}else {
 			return ResponseEntity.ok(StakeHolder);
 		}
+	}
+	@RequestMapping(value = "/viewStakeHolders",method = RequestMethod.GET)
+	public List<StakeHolder> fetchAllUsers() {
+		return stakeHolderService.fetchAllUsers();
 	}
 	
 	
