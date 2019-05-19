@@ -3,6 +3,7 @@
 package com.stock.management.modal;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,14 +22,14 @@ public class StakeHolder {
 	@OneToOne(cascade = CascadeType.ALL)
 	StakeHolderAddress address;
 	
-	@OneToMany(mappedBy = "stakeHolders", cascade = CascadeType.ALL)
-	LinkedList<StakeHolderTelephone> telephones;
+	@OneToMany(mappedBy = "stakeholder", cascade = CascadeType.ALL)
+	List<StakeHolderTelephone> telephones;
 
-	public LinkedList<StakeHolderTelephone> getTelephones() {
+	public List<StakeHolderTelephone> getTelephones() {
 		return telephones;
 	}
 
-	public void setTelephones(LinkedList<StakeHolderTelephone> telephones) {
+	public void setTelephones(List<StakeHolderTelephone> telephones) {
 		this.telephones = telephones;
 	}
 
