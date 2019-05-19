@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stock.management.modal.Item;
+import com.stock.management.modal.OpenStockDetails;
 import com.stock.management.modal.StockLog;
 import com.stock.management.modal.Transaction;
 import com.stock.management.modal.User;
@@ -34,6 +37,31 @@ public class TransactionController {
 	public List<Transaction> fetchAllTransactions() {
 		return service.fetchAllTransactions();
 	}
+	
+	
+	
+	@RequestMapping(value = "/viewTransactions/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Transaction> fetchTransaction(@PathVariable Integer id) {
+		
+		Transaction transaction = service.fetchTransaction(id);
+		if(transaction == null) {
+			return ResponseEntity.notFound().build();
+		}else {
+			return ResponseEntity.ok(transaction);
+		}
+	}
+	
+	 @RequestMapping(value = "/updateTransaction/{id}", method = RequestMethod.PUT)
+	    public void updateTransaction(@PathVariable Integer id, @RequestBody Transaction transaction){
+	     
+		 service.updateTransaction(id, transaction);
+	    }
+	
+	@RequestMapping(value = "/deletetransactions/{id}", method = RequestMethod.DELETE)
+    public void deleteTransactions(@PathVariable Integer id){
+     
+		service.deleteTransactions(id);
+    }
 	
 	
 	@RequestMapping(value = "/test")
