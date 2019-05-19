@@ -1,7 +1,7 @@
 package com.stock.management.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,24 +44,24 @@ public class TransactionController {
 		Item item = new Item();
 		
 		transaction.setId(1);
-		Date date = new Date();
-		transaction.setDate(date);
-		transaction.setUser("kav");
+		//Date date = new Date();
+		//transaction.setDate(date);
+		//transaction.setUser("kav");
 		
 		stocklog.setId(1);
 		stocklog.setQty(40);
 		
 		item.setId(1);
 		item.setName("Soap");
-		item.setUnitprice(50);
+		item.setUnitprice(50.0);
 		
 		List<Item> items = new ArrayList<Item>();
 		items.add(item);
-		stocklog.setItems(items);
+		//stocklog.setItems(items);
 		
 		List<StockLog> stocklogs = new ArrayList<StockLog>();
 		stocklogs.add(stocklog);
-		transaction.setStocklog(stocklogs);
+		//transaction.setStocklog(stocklogs);
 		return transaction;
 	}
 	
