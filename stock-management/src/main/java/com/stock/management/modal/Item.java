@@ -17,12 +17,35 @@ public class Item {
 	private Integer id;
 	
 	private String name;
-	private Integer unitprice;
+	private Double unitprice;
+	private Double salesPrice;
+	private String uom;
 	
-	@ManyToOne 
-	@JoinColumn
-	@JsonIgnore
-	StockLog stocklog;
+
+
+	public Double getUnitprice() {
+		return unitprice;
+	}
+
+	public void setUnitprice(Double unitprice) {
+		this.unitprice = unitprice;
+	}
+
+	public Double getSalesPrice() {
+		return salesPrice;
+	}
+
+	public void setSalesPrice(Double salesPrice) {
+		this.salesPrice = salesPrice;
+	}
+
+	public String getUom() {
+		return uom;
+	}
+
+	public void setUom(String uom) {
+		this.uom = uom;
+	}
 
 	public Integer getId() {
 		return id;
@@ -40,19 +63,7 @@ public class Item {
 		this.name = name;
 	}
 
-	public Integer getUnitprice() {
-		return unitprice;
-	}
+	
 
-	public void setUnitprice(Integer unitprice) {
-		this.unitprice = unitprice;
-	}
-
-	public StockLog getStocklog() {
-		return stocklog;
-	}
-
-	public void setStocklog(StockLog stocklog) {
-		this.stocklog = stocklog;
-	}
+	
 }

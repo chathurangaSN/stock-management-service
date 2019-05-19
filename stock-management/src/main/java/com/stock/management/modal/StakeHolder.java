@@ -1,6 +1,9 @@
+
+//nilaksha
 package com.stock.management.modal;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,16 +22,16 @@ public class StakeHolder {
 	@OneToOne(cascade = CascadeType.ALL)
 	StakeHolderAddress address;
 	
-//	@OneToMany(mappedBy = "suppliers", cascade = CascadeType.ALL)
-//	LinkedList<StakeHolderTelephone> telephones;
-//
-//	public LinkedList<StakeHolderTelephone> getTelephones() {
-//		return telephones;
-//	}
-//
-//	public void setTelephones(LinkedList<StakeHolderTelephone> telephones) {
-//		this.telephones = telephones;
-//	}
+	@OneToMany(mappedBy = "stakeholder", cascade = CascadeType.ALL)
+	List<StakeHolderTelephone> telephones;
+
+	public List<StakeHolderTelephone> getTelephones() {
+		return telephones;
+	}
+
+	public void setTelephones(List<StakeHolderTelephone> telephones) {
+		this.telephones = telephones;
+	}
 
 	public Integer getId() {
 		return id;

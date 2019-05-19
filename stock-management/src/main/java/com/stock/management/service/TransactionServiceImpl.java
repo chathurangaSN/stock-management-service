@@ -19,13 +19,13 @@ public class TransactionServiceImpl {
 	
 	public Transaction saveTransaction(Transaction transaction) {
 		
-		for (StockLog stocklog : transaction.getStocklog()) {
-			stocklog.setTransaction(transaction);
-			
-			for(Item item : stocklog.getItems()) {
-				item.setStocklog(stocklog);
-			}
-		}
+//		for (StockLog stocklog : transaction.getStocklog()) {
+//			stocklog.setTransaction(transaction);
+//			
+//			for(Item item : stocklog.getItems()) {
+//				item.setStocklog(stocklog);
+//			}
+//		}
 		return transactionRepository.save(transaction);
 	}
 	
