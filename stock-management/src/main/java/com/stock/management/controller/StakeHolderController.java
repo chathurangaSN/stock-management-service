@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stock.management.modal.OpenStockDetails;
 import com.stock.management.modal.StakeHolder;
 import com.stock.management.service.StakeHolderService;
 
@@ -45,5 +46,16 @@ public class StakeHolderController {
 		return stakeHolderService.fetchAllUsers();
 	}
 	
+	 @RequestMapping(value = "/updatestakeholder/{id}", method = RequestMethod.PUT)
+	    public void updateStakeHolder(@PathVariable Integer id, @RequestBody  StakeHolder stakeHolder){
+	     
+		 stakeHolderService.updateStakeHolder(id, stakeHolder);
+	    }
+	    
+	 @RequestMapping(value = "/deletestakeholder/{id}", method = RequestMethod.DELETE)
+	    public void deleteStakeHolder(@PathVariable Integer id){
+	     
+	    	stakeHolderService.deleteStakeHolder(id);
+	    }
 	
 }

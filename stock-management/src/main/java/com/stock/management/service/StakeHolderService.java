@@ -16,4 +16,8 @@ public interface StakeHolderService {
 	
 	//StakeHolder fetchAllStakeHolder();
 	List<StakeHolder> fetchAllUsers();
+	
+	 void updateStakeHolder(Integer id,StakeHolder stakeHolder);
+
+	void deleteStakeHolder(Integer id);
 }

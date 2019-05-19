@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.stock.management.modal.StakeHolder;
 import com.stock.management.modal.StakeHolderTelephone;
 import com.stock.management.repository.StakeHolderRepository;
@@ -43,6 +44,30 @@ public class StakeHolderServiceImpl implements StakeHolderService {
 		public List<StakeHolder> fetchAllUsers() {
 			// TODO Auto-generated method stub
 			return stakeHolderRepository.findAll();
+		}
+
+		@Override
+		public void updateStakeHolder(Integer id, StakeHolder stakeHolder) {
+			// TODO Auto-generated method stub
+			List<StakeHolder> stakeholder =  stakeHolderRepository.findAll();
+			for (int i = 0; i < stakeholder.size(); i++) {
+				
+					StakeHolder s=stakeholder.get(i);
+					if(s.getId().equals(id)) {
+						
+						stakeholder.set(id, (StakeHolder) stakeholder);
+						return;
+					}
+				}	
+			  
+			
+		}
+
+		@Override
+		public void deleteStakeHolder(Integer id) {
+			// TODO Auto-generated method stub
+			stakeHolderRepository.deleteById(id);
+			
 		}
 	
 
