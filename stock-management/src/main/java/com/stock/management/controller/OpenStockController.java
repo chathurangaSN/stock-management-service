@@ -1,6 +1,8 @@
 package com.stock.management.controller;
 //----- Sahan Part -----
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,10 @@ public class OpenStockController {
 	// create  stock log with its respective details
 	@RequestMapping(value = "/openStockAll", method = RequestMethod.POST)
     public OpenStock saveOpenStock(@RequestBody OpenStock openStock) {
-
+		openStock.setDate(ZonedDateTime.now(ZoneId.of("UTC-4")));
         return stockService.saveOpenStock(openStock);
     }
+	
 	// fetch all stock logs with its respective stock details
     @RequestMapping(value = "/openStockAll", method = RequestMethod.GET)
 //    public List<OpenStock> fetchAllOpenStock() {
@@ -36,7 +39,7 @@ public class OpenStockController {
 //        return stockService.fetchAllOpenStock();
 //    }
  
-    public ResponseEntity<List<OpenStock>> fetchEmployee() {
+    public ResponseEntity<List<OpenStock>> fetchAllOpenStock() {
 		
     	List<OpenStock> openStocks = stockService.fetchAllOpenStock();
 		if(openStocks == null || openStocks.size() == 0) {
@@ -52,8 +55,37 @@ public class OpenStockController {
     // create a new stock log only
     @RequestMapping(value = "/openStockLog", method = RequestMethod.POST)
     public OpenStock createOpenStock(@RequestBody OpenStock openStock) {
-
+    	openStock.setDate(ZonedDateTime.now(ZoneId.of("UTC-4")));
         return stockService.createOpenStock(openStock);
+    }
+    
+    // update existing stock details entry
+    @RequestMapping(value = "/openStockLog/{id}", method = RequestMethod.PUT) // open stock log id
+    public void updateOpenStockLog(@PathVariable Integer id, @RequestBody OpenStock details){
+     
+    	stockService.updateOpenStockLog(id, details);
+    }
+    
+    // fetch a stock log by id
+    @RequestMapping(value = "/openStockLog/{id}", method = RequestMethod.GET)
+    public ResponseEntity<OpenStock> fetchOpenStockById(@PathVariable Integer id) {
+    	List<OpenStock> openStocks = stockService.fetchAllOpenStock();
+		if(openStocks == null || openStocks.size() == 0) {
+			System.out.println("true");
+			return ResponseEntity.noContent().build();
+		}else {
+			System.out.println("false");
+			OpenStock openStock = stockService.fetchOpenStock(id);
+			return ResponseEntity.ok(openStock);
+			
+		}
+	}
+    
+    // delete existing stock log with its details
+    @RequestMapping(value = "/openStockLog/{id}", method = RequestMethod.DELETE)
+    public void deleteOpenStockLog(@PathVariable Integer id){
+     
+    	stockService.deleteOpenStockLog(id);
     }
     
     // create a new open stock detail entry for an existing stock log // not validated 
@@ -76,4 +108,50 @@ public class OpenStockController {
      
     	stockService.deleteOpenStockDetails(id);
     }
+    
+    // delete all existing stock details entry for stock log id // not working
+    @RequestMapping(value = "/openStockDetailsAll/{id}", method = RequestMethod.DELETE)
+    public void deleteAllOpenStockDetails(@PathVariable Integer id){
+     
+    	 stockService.deleteAllOpenStockDetails(id);
+    	
+    }
+
+    // fetch all stock details by stock log by id
+    @RequestMapping(value = "/openStockDetailsAll/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<OpenStockDetails>> fetchAllOpenStockDetailsById(@PathVariable Integer id) {
+    	OpenStock openStock = stockService.fetchOpenStock(id);
+		if(openStock == null ) {
+			System.out.println("true");
+			return ResponseEntity.noContent().build();
+		}else {
+			System.out.println("false");
+			return ResponseEntity.ok(openStock.getOpenStockDetails());
+		}
+	}
+    
+    // fetch stock details by its id
+    @RequestMapping(value = "/openStockDetails/{id}", method = RequestMethod.GET)
+    public ResponseEntity<OpenStockDetails> fetchOpenStockDetailsById(@PathVariable Integer id) {
+    	OpenStockDetails openStocksDetails = stockService.fetchAllOpenStockDetails(id);
+		if(openStocksDetails == null ) {
+			System.out.println("true");
+			return ResponseEntity.noContent().build();
+		}else {
+			System.out.println("false");
+			return ResponseEntity.ok(openStocksDetails);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

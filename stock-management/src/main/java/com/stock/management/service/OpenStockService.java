@@ -14,9 +14,20 @@ public interface OpenStockService {
     
     OpenStock createOpenStock(OpenStock openStock);
     
+    void updateOpenStockLog(Integer id, OpenStock details);
+    
+    OpenStock fetchOpenStock(Integer id);
+    
+    void deleteOpenStockLog(Integer id);
+    
     OpenStockDetails createOpenStockDetails(Integer id, OpenStockDetails details);
     
     void updateOpenStockDetails(Integer id, OpenStockDetails details);
     
     void deleteOpenStockDetails(Integer id);
+    
+    void deleteAllOpenStockDetails(Integer id);
+    
+    OpenStockDetails fetchAllOpenStockDetails(Integer id);
+    
 }

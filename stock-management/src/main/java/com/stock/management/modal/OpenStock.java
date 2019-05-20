@@ -1,5 +1,6 @@
 package com.stock.management.modal;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,11 +18,11 @@ public class OpenStock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id = 0;
 
-    int date;
+    ZonedDateTime date;
     String user;
     String reason;
 
-    @OneToMany(mappedBy = "openStock", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "openStock", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<OpenStockDetails> openStockDetails;
 
     public Integer getId() {
@@ -32,19 +33,27 @@ public class OpenStock {
         this.id = id;
     }
 
-    public int getDate() {
-        return date;
-    }
+//    public int getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(int date) {
+//        this.date = date;
+//    }
+    
+    public ZonedDateTime getDate() {
+		return date;
+	}
 
-    public void setDate(int date) {
-        this.date = date;
-    }
-
+	public void setDate(ZonedDateTime date) {
+		this.date = date;
+	}
+	
     public String getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+	public void setUser(String user) {
         this.user = user;
     }
 
