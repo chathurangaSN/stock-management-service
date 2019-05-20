@@ -4,7 +4,7 @@ spring:
     url: jdbc:mysql://localhost:3306/stockmanagmentdb?createdatabaseifnotexist=true
     username: root
     password: 1qaz2wsx@
-    driver-class-name: com.mysql.cj.jdbc.driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
