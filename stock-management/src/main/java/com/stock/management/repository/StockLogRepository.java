@@ -1,5 +1,9 @@
 package com.stock.management.repository;
 
-public interface StockLogRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.stock.management.modal.StockLog;
+
+public interface StockLogRepository extends JpaRepository<StockLog, Integer> {
 
 }
