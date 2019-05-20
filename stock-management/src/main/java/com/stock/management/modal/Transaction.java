@@ -17,10 +17,24 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Date date;
-	private String user;
+	private String type;
+	private String reference;
 	
-	@OneToMany(mappedBy = "transaction",cascade = CascadeType.ALL)
-	private List<StockLog> stocklog;
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getReference() {
+		return reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
 
 	public Integer getId() {
 		return id;
@@ -34,24 +48,9 @@ public class Transaction {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate() {
+		this.date = new Date();
 	}
 
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public List<StockLog> getStocklog() {
-		return stocklog;
-	}
-
-	public void setStocklog(List<StockLog> stocklog) {
-		this.stocklog = stocklog;
-	}
 }
 

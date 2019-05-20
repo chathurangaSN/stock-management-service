@@ -1,6 +1,7 @@
 package com.stock.management.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,44 @@ public class UserServiceImpl implements UserService {
 	public List<User> fetchAllUsers() {
 		return userRepository.findAll();
 	}
+
+	//find user by id
+	@Override
+	public Optional<User> findUserById(Integer id) {
+        return userRepository.findById(id);
+    }
+
+	//update user
+//	@Override
+//	public User updateUser(User user) {
+//		return userRepository.save(user);
+//		
+//	}
+	
+	
+	//Delete user
+	@Override
+	public void deleteUser(Integer id) {
+        userRepository.deleteById(id);
+    }
+	
+	//Delete all users
+	@Override
+	public void deleteAllUsers() {
+		userRepository.deleteAll();
+		
+	}
+	
+	
 	
 	
 
-}
+	
+	
+		
+	}
+	
+	
+	
+
+
