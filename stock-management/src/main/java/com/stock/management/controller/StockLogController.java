@@ -21,13 +21,14 @@ public class StockLogController {
 	@Autowired
 	StockLogService stockLogService;
 	
-	@RequestMapping(value ="/stocklog",method = RequestMethod.POST)
+	@RequestMapping(value ="/addstocklog",method = RequestMethod.POST)
 	public StockLog save(@RequestBody StockLog stockLog){
 		return stockLogService.save(stockLog);
 	}
-	@RequestMapping(value ="/stocklog", method = RequestMethod.GET)
+	@RequestMapping(value ="/getstocklog", method = RequestMethod.GET)
 	public List<StockLog> fetchAllStocks(){
 		return stockLogService.fetchAllStocks();
 	}
+	
 	
 }
