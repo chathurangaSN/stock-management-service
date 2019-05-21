@@ -18,16 +18,32 @@ import com.stock.management.repository.OpenStockRepository;
 public class OpenStockServiceImpl implements OpenStockService{
 
 	@Autowired
- 	OpenStockRepository openStockRepository;
+ 	OpenStockRepository openStockRepository ;
  	
  	@Autowired
  	OpenStockDetailsRepository openStockDetailsRepository;
 
+ 	@Autowired
+	UserService userService;
+ 	
 	@Override
 	public OpenStock saveOpenStock(OpenStock openStock) {
 		
+		for (int i = 0; i < openStock.getOpenStockDetails().size(); i++) {
+			if(openStock.getOpenStockDetails().get(i).getItemId() == null || openStock.getOpenStockDetails().get(i).getQuantity() == null) {
+				throw new RuntimeException("Please provide all open stock details");
+			}else if (openStock.getOpenStockDetails().get(i).getItemId()<1) {
+				throw new RuntimeException("Please all open stock details");
+			}
+//			if(openStock.getOpenStockDetails().get(i).getItemId().toString().contains("[0-9]+")) {
+//				System.out.println("string frppunt"+ i);
+//			}
+		}
+		
+		System.out.println("Get user name "+openStock.getUser());
 		for(OpenStockDetails openStockDetails:openStock.getOpenStockDetails()) {
             openStockDetails.setOpenStock(openStock);
+            System.out.println("dasf" + openStock.getOpenStockDetails());
         }
         return openStockRepository.save(openStock);
 	}
@@ -50,7 +66,6 @@ public class OpenStockServiceImpl implements OpenStockService{
 		List<OpenStock> openStock =  openStockRepository.findAll();
 		for (int i = 0; i < openStock.size(); i++) {
 			if (openStock.get(i).getId() == id) {
-				openStock.get(i).setDate(details.getDate());
 				openStock.get(i).setUser(details.getUser());
 				openStock.get(i).setReason(details.getReason());
 				
@@ -99,10 +114,19 @@ public class OpenStockServiceImpl implements OpenStockService{
 	
 	@Override
 	public OpenStock fetchOpenStock(Integer id) {
-		Optional<OpenStock> optional = openStockRepository.findById(id);
-		if(optional.isPresent()) {
-			return optional.get();
+//		Optional<OpenStock> optional = openStockRepository.findById(id);
+//		if(optional.isPresent()) {
+//			return optional.get();
+//		}else {
+//			return null;
+//		}
+		boolean status = openStockRepository.existsById(id);
+		if(status) {
+			System.out.println("have");
+			OpenStock openStock = openStockRepository.getOne(id);
+			return openStock;
 		}else {
+			System.out.println("null");
 			return null;
 		}
 	}

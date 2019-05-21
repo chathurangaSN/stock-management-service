@@ -8,7 +8,7 @@ import com.stock.management.modal.OpenStockDetails;
 //----- Sahan Part -----
 public interface OpenStockService {
 
-	OpenStock saveOpenStock(OpenStock openStock);
+	OpenStock saveOpenStock(OpenStock openStock) ;
 	
     List<OpenStock> fetchAllOpenStock();
     
